@@ -8,16 +8,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 public class FireBaseService {
     FirebaseDatabase db;
 
-    //He probado tanto con /key.json como con key.json, en ambos salta null pointer exception y si no pongo / salta además
-    // File not found exception
-
+    /*
+    He probado tanto con /key.json como con key.json, en ambos salta null pointer exception y si no pongo / salta además
+    File not found exception
+    Eso ha sido sin poner Objects.requireNonNull(), poniendolo sigue dando null pointer exception
+    */
     public FireBaseService() throws IOException {
         File file = new File(
-                getClass().getClassLoader().getResource("/key.json").getFile()
+                Objects.requireNonNull(getClass().getClassLoader().getResource("/key.json")).getFile()
         );
 
         FileInputStream fis = new FileInputStream(file);
