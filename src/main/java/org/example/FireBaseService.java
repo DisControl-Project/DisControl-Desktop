@@ -10,13 +10,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class FireBaseService {
-
-
     FirebaseDatabase db;
+
+    //He probado tanto con /key.json como con key.json, en ambos salta null pointer exception y si no pongo / salta además
+    // File not found exception
 
     public FireBaseService() throws IOException {
         File file = new File(
-                getClass().getClassLoader().getResource("key.json").getFile()
+                getClass().getClassLoader().getResource("/key.json").getFile()
         );
 
         FileInputStream fis = new FileInputStream(file);
