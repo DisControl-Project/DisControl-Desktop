@@ -27,7 +27,7 @@ public class FireBaseService {
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(fis))
-                .setDatabaseUrl("https://restaurants-3bb3e.firebaseio.com")
+                .setDatabaseUrl("https://discontrol-10e47.firebaseio.com/")
                 .build();
 
         FirebaseApp.initializeApp(options);
