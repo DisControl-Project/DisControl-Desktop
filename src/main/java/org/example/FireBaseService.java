@@ -19,9 +19,7 @@ public class FireBaseService {
     Eso ha sido sin poner Objects.requireNonNull(), poniendolo sigue dando null pointer exception
     */
     public FireBaseService() throws IOException {
-        File file = new File(
-                Objects.requireNonNull(getClass().getClassLoader().getResource("/key.json")).getFile()
-        );
+        File file = new File("key.json");
 
         FileInputStream fis = new FileInputStream(file);
 
