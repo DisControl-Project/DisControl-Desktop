@@ -16,7 +16,7 @@ public class ShowDBChanges implements Runnable {
     }
 
     public void move(int x, int y){
-        robot.mouseMove(MouseInfo.getPointerInfo().getLocation().x - x, MouseInfo.getPointerInfo().getLocation().y - y);
+        robot.mouseMove(MouseInfo.getPointerInfo().getLocation().x + x, MouseInfo.getPointerInfo().getLocation().y + y);
     }
    // cuando se hace tap oldX y oldY sea igual a newX y newY
     public void run() {
@@ -38,7 +38,7 @@ public class ShowDBChanges implements Runnable {
                 newX = (int) Double.parseDouble(dataSnapshot.child("usuario").child("pos").child("x_pos").getValue().toString());
                 newY = (int) Double.parseDouble(dataSnapshot.child("usuario").child("pos").child("y_pos").getValue().toString());
 
-                move(oldX-newX, oldY-newY);
+                move(oldX+newX, oldY+newY);
 
                 oldX = newX;
                 oldY = newY;
