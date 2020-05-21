@@ -3,6 +3,7 @@ package org.example;
 import com.google.firebase.database.*;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
 import java.io.IOException;
 
 public class ShowDBChanges implements Runnable {
@@ -10,14 +11,36 @@ public class ShowDBChanges implements Runnable {
     int oldY = 0;
     int newX;
     int newY;
+    boolean clickL = false;
+    boolean clickR = false;
+
     Robot robot = new Robot();
 
     public ShowDBChanges() throws AWTException {
     }
 
     public void move(int x, int y){
-        robot.mouseMove(MouseInfo.getPointerInfo().getLocation().x - x, MouseInfo.getPointerInfo().getLocation().y - y);
+        robot.mouseMove(MouseInfo.getPointerInfo().getLocation().x + x, MouseInfo.getPointerInfo().getLocation().y + y);
     }
+
+    public void clikL(boolean clickL){
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+        this.clickL = false;
+    }
+    public void clickR(boolean clickR){
+        robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+
+        this.clickR = false;
+    }
+    public void write(){
+
+
+    }
+
+
    // cuando se hace tap oldX y oldY sea igual a newX y newY
     public void run() {
         FireBaseService fbs = null;
@@ -38,10 +61,20 @@ public class ShowDBChanges implements Runnable {
                 newX = (int) Double.parseDouble(dataSnapshot.child("usuario").child("pos").child("x_pos").getValue().toString());
                 newY = (int) Double.parseDouble(dataSnapshot.child("usuario").child("pos").child("y_pos").getValue().toString());
 
-                move(oldX-newX, oldY-newY);
+                if (dataSnapshot.child("usuario").child("clicks").child("clickL").getValue().toString().equals("true")){
+                    clickL = true;
+                    clikL(clickL);
+                }
+                if (dataSnapshot.child("usuario").child("clicks").child("clickR").getValue().toString().equals("true")){
+                    clickR = true;
+                    clickR(clickR);
+                }
+                move(oldX+newX, oldY+newY);
 
                 oldX = newX;
                 oldY = newY;
+
+
 
                 System.out.println("New X:" + newX);
                 System.out.println("New Y:" + newY);

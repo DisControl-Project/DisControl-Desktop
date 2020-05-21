@@ -12,7 +12,7 @@ public class App
     public static void main( String[] args ) throws AWTException {
         Thread t = new Thread(new ShowDBChanges());
 
-        t.run();
+        t.start();
         try {
             Thread.sleep(100000);
         } catch (InterruptedException e) {
