@@ -13,10 +13,15 @@ public class App
         Thread t = new Thread(new ShowDBChanges());
 
         t.start();
+
         try {
+
             Thread.sleep(100000);
+
         } catch (InterruptedException e) {
+
             e.printStackTrace();
+
         }
     }
 }
