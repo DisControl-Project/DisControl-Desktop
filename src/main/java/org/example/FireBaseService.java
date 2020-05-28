@@ -13,11 +13,7 @@ import java.util.Objects;
 public class FireBaseService {
     FirebaseDatabase db;
 
-    /*
-    He probado tanto con /key.json como con key.json, en ambos salta null pointer exception y si no pongo / salta además
-    File not found exception
-    Eso ha sido sin poner Objects.requireNonNull(), poniendolo sigue dando null pointer exception
-    */
+
     public FireBaseService() throws IOException {
 
         File file = new File("key.json");
